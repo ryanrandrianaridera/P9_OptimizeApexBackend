@@ -1,7 +1,0 @@
-<apex:page controller="VFC01_Team" >
-    <div>
-        <h1>
-            Sum of my team orders: <apex:outputText value="{!SumOders}" />
-        </h1>
-    </div>
-</apex:page>
