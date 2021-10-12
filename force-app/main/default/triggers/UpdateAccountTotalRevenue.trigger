@@ -10,11 +10,10 @@ trigger UpdateAccountTotalRevenue on Order (after update) {
          ) {
         
         sAccountToRecalculate.add(newOrder.AccountId);
-        }
-    
-        // Call the service
+        }          
+        }  
+    // Call the service  
     if(sAccountToRecalculate.size() > 0){
         AccountManager.calculateAmount(sAccountToRecalculate);
         }  
-    }    
 } 

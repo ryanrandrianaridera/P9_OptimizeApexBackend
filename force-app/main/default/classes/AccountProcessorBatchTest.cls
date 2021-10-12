@@ -3,7 +3,7 @@ private class AccountProcessorBatchTest {
     @isTest
     static void testAccountTotalRevenueUpdate() {
         // Initialize variables
-        Integer numbAccounts = 200;
+        Integer numbAccounts = 50;
         Integer numbOrders = 2;
         Integer totalRevenueExpected = numbOrders * TestDataFactory.ITEM_QUANTITY * TestDataFactory.UNIT_PRICE;
         // Load test data
