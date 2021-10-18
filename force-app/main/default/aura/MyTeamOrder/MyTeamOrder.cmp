@@ -12,7 +12,7 @@
                 <lightning:icon iconName="standard:opportunity" size="small" />
             </lightning:layoutItem>
             <lightning:layoutItem class="slds-var-m-left_small">
-                <h2 class="slds-card__header-title slds-p-right_xxx-small">MyTeamOrder</h2>
+                <h2 class="slds-card__header-title slds-var-p-right_xxx-small">MyTeamOrder</h2>
             </lightning:layoutItem>
         </lightning:layout>
     </div>
