@@ -1,0 +1,19 @@
+<apex:page controller="TeamOrdersController">
+
+    <apex:pageBlock title="Total des commandes">
+        <apex:pageBlockTable value="{!groupedResults}" var="order">
+            <apex:column value="{!order['orderName']}">
+                <apex:facet name="header">Sales Person</apex:facet>
+            </apex:column>
+            <apex:column value="{!order['orderCount']}">
+                <apex:facet name="header">Total Orders</apex:facet>
+            </apex:column>
+            <apex:column value="{!(ROUND(order['orderAvg'],2))} €">
+                <apex:facet name="header">Order Average</apex:facet>
+            </apex:column>
+            <apex:column value="{!(ROUND(order['sumOrders'],2))} €">
+                <apex:facet name="header">Total Amount</apex:facet>
+            </apex:column>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>
