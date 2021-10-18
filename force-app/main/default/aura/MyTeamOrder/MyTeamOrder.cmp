@@ -6,8 +6,23 @@
 
     <aura:handler name="init" value="{! this }" action="{! c.init }" />
 
-    <div style="height: 400px">
-
-        <lightning:datatable keyField="Name" data="{! v.data }" columns="{! v.columns }" />
+    <div class="slds-page-header slds-page-header_object-home">
+        <lightning:layout>
+            <lightning:layoutItem>
+                <lightning:icon iconName="standard:opportunity" size="small" />
+            </lightning:layoutItem>
+            <lightning:layoutItem class="slds-m-left_small">
+                <h2 class="slds-card__header-title slds-p-right_xxx-small">MyTeamOrder</h2>
+            </lightning:layoutItem>
+        </lightning:layout>
     </div>
+    <lightning:card>
+        <lightning:layout horizontalAlign="space" multipleRows="true">
+
+            <lightning:layoutItem size="12" mediumDeviceSize="12" padding="around-small">
+                <lightning:datatable keyField="Name" data="{! v.data }" columns="{! v.columns }"
+                    hideCheckboxColumn="true" />
+            </lightning:layoutItem>
+        </lightning:layout>
+    </lightning:card>
 </aura:component>
