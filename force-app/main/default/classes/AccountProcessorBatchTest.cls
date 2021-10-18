@@ -34,11 +34,10 @@ private class AccountProcessorBatchTest {
                                WHERE Status = 'Ordered') FROM Account 
                                WHERE Id IN (SELECT AccountId FROM Order WHERE Status = 'Ordered')];
      
-        AccountProcessorBatch updatedBatch = new AccountProcessorBatch();
-         Database.QueryLocator query = updatedBatch.start(null);
-         updatedBatch.execute(null, accs);
-         updatedBatch.finish(null);
-     
+        AccountProcessorBatch upAccs = new AccountProcessorBatch();
+        Id batchId = Database.executeBatch(upAccs);
+             
+    // Check New Acc CA
       List<Account> batchList = [SELECT ID, Chiffre_d_affaire__c FROM Account WHERE ID IN (SELECT AccountID FROM Order WHERE Status = 'Ordered')];
     
      Test.stopTest();
