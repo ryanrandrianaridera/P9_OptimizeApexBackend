@@ -16,14 +16,11 @@ private class TeamOrdersSumControllerTest {
       @isTest
  public static void TestMyTeamOrdersController(){
     
-     List <Order> ordersList = [SELECT AccountId, ShipmentCost__c,TotalAmount,NetAmount__c FROM Order WHERE Account.Name = 'AccountTest'];
+    List <Order> ordersList = [SELECT AccountId, ShipmentCost__c,TotalAmount,NetAmount__c FROM Order WHERE Account.Name = 'AccountTest'];
+    List<AggregateResult> groupedResults = TeamOrdersSumController.teamSumOrders();
      
-     Test.startTest();
-           List<AggregateResult> groupedResults = TeamOrdersSumController.teamSumOrders();
-     Test.stopTest();
-     
-     System.assert(groupedResults.size()>0);
-     //30 orders * 100 unitprice = 3000
-     System.assertEquals(3000, groupedResults[0].get('sumOrders'));
+    System.assert(groupedResults.size()>0);
+    //30 orders * 100 unitprice = 3000
+    System.assertEquals(3000, groupedResults[0].get('sumOrders'));
  }
 }

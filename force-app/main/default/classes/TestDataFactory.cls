@@ -1,6 +1,6 @@
 @isTest
 public with sharing class TestDataFactory {
-
+    
     public static Account createAccount(String name) {
         Account account = new Account( Name = name);
         insert account;
@@ -12,23 +12,23 @@ public with sharing class TestDataFactory {
                                          StartDate= System.today(),
                                          ContractTerm=12,
                                          Status='Draft',
-                                        Name = 'contractTest');
+                                         Name = 'contractTest');
         insert contract;
         contract.Status = 'Activated';
-       update contract;
+        update contract;
         return contract;
     }
-
+    
     public static Product2 createProduct() {
         Product2 product = new Product2(
             IsActive =true,
             Name = 'ProductTest'
-                      );
+        );
         insert product;
         return product;
     }
     
-     public static PricebookEntry createPricebookEntry(Id productId, Decimal amount) {
+    public static PricebookEntry createPricebookEntry(Id productId, Decimal amount) {
         PricebookEntry pricebookEntry = new PricebookEntry(
             Pricebook2Id = Test.getStandardPricebookId(),
             Product2Id = productId,
@@ -37,49 +37,49 @@ public with sharing class TestDataFactory {
         );
         insert priceBookEntry;
         return priceBookEntry;     
-     }
+    }
     
-  public static Order createOrder(Id accountId, Id contractId){         
+    public static Order createOrder(Id accountId, Id contractId){         
         Order order = New Order (
-        AccountId = accountId,
-        ContractId = contractId,
-        Status ='Draft',
-        EffectiveDate = Date.today(),
-        Pricebook2Id = Test.getStandardPricebookId()
+            AccountId = accountId,
+            ContractId = contractId,
+            Status ='Draft',
+            EffectiveDate = Date.today(),
+            Pricebook2Id = Test.getStandardPricebookId()
         );       
         insert order;
         return order;   
     }            
-   
-      
-     public static OrderItem createOrderItem(Id orderId, Id productId, Integer quantity, Decimal unitPrice,  Id pricebookEntryId) {
+    
+    
+    public static OrderItem createOrderItem(Id orderId, Id productId, Integer quantity, Decimal unitPrice,  Id pricebookEntryId) {
         OrderItem orderItem = new OrderItem(
-        OrderId = orderId,
-        Product2Id= productId,
-        Quantity = quantity,
-        UnitPrice = unitPrice,
-        PricebookEntryId= pricebookEntryId
-          );
+            OrderId = orderId,
+            Product2Id= productId,
+            Quantity = quantity,
+            UnitPrice = unitPrice,
+            PricebookEntryId= pricebookEntryId
+        );
         insert orderItem;
         return orderItem;
     }
     
-     //Method to create a list of Accounts
-     public static List<Account> createAccounts(Integer numberOfaccounts) {
+    //Method to create a list of Accounts
+    public static List<Account> createAccounts(Integer numberOfaccounts) {
         List<Account> accounts = new List<Account>();
         
         for (Integer i = 0 ; i < numberOfaccounts; i++) {
-                Account accts = new Account(
+            Account accts = new Account(
                 Name = 'AccountTest '+i
-                               );
+            );
             accounts.add(accts);
         }
         insert accounts;
         return accounts;
     }
     
-      //Method to create a list of Orders
-     public static List<Order> createOrders(Account account, PricebookEntry pricebookEntry, Integer numberOrder) {
+    //Method to create a list of Orders
+    public static List<Order> createOrders(Account account, PricebookEntry pricebookEntry, Integer numberOrder) {
         List<Order> orders = new List<Order>();
         Contract contract =TestDataFactory.createContract(account.Id); 
         for(Integer i = 0; i < numberOrder; i++){
@@ -87,19 +87,19 @@ public with sharing class TestDataFactory {
             order.Name='OrdersTest'+i;
             orders.add(order);
         }
-         update orders;
+        update orders;
         return orders;
     }
-
-  //Method to create a list of OrderItems
+    
+    //Method to create a list of OrderItems
     public static List<OrderItem> createOrderItems(Integer quantity, List<Order> orders, PricebookEntry pricebookEntry) {
         List<OrderItem> orderItems = new List<OrderItem>();
-               for (Order order : orders){
-                   OrderItem orderItem = new OrderItem(
-                    OrderId = order.Id,
-                    PricebookEntryId = pricebookEntry.Id,
-                   UnitPrice = pricebookEntry.UnitPrice,
-                    Quantity = quantity
+        for (Order order : orders){
+            OrderItem orderItem = new OrderItem(
+                OrderId = order.Id,
+                PricebookEntryId = pricebookEntry.Id,
+                UnitPrice = pricebookEntry.UnitPrice,
+                Quantity = quantity
             );
             orderItems.add(orderItem);
         }
@@ -108,7 +108,7 @@ public with sharing class TestDataFactory {
     }
     //Method to create One account with several orders
     public static List<Order> createAccountWithOrders(Integer numberOrders, Id accountId){
-      
+        
         List<Order> orders = new List<Order>();
         for(Integer i=0; i<numberOrders; i++) {
             Order order = new Order(
@@ -129,7 +129,7 @@ public with sharing class TestDataFactory {
             items.add(item);
         }
         insert items;     
-       
+        
         update orders;
         return orders;
     }   
