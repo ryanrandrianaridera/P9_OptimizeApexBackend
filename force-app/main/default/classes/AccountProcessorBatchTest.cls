@@ -6,14 +6,14 @@ private class AccountProcessorBatchTest {
     static void setup(){
         
         Account acc1 = TestDataFactory.createAccount('AccountTest');
-        List <Order> ordersList = TestDataFactory.createAccountWithOrders(40, acc1.Id);
+        List <Order> ordersList = TestDataFactory.createAccountWithOrders(20, acc1.Id);
         // Set up the order status to 'Ordered'
         for( Order order : ordersList){
             order.Status = 'Ordered';
             update order;  
         }
         Account acc2 = TestDataFactory.createAccount('TestAccount');
-        List <Order> ordersList2 = TestDataFactory.createAccountWithOrders(20, acc2.Id);
+        List <Order> ordersList2 = TestDataFactory.createAccountWithOrders(40, acc2.Id);
         // Set up the order status to 'Ordered'
         for( Order order : ordersList2){
             order.Status = 'Ordered';
@@ -43,7 +43,7 @@ private class AccountProcessorBatchTest {
         Test.stopTest();
         
         
-        //acc1 :  40 orders *100 unitPrice  = 4000
+        //acc2 :  40 orders *100 unitPrice  = 4000
         //acc1 :  20 orders *100 unitPrice  = 2000
         System.assertEquals(4000, batchList[0].Chiffre_d_affaire__c);
         System.assertEquals(2000, batchList[1].Chiffre_d_affaire__c);

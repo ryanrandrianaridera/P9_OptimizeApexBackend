@@ -18,7 +18,7 @@ private class TeamOrdersSumControllerTest {
     
     List <Order> ordersList = [SELECT AccountId, ShipmentCost__c,TotalAmount,NetAmount__c FROM Order WHERE Account.Name = 'AccountTest'];
     List<AggregateResult> groupedResults = TeamOrdersSumController.teamSumOrders();
-     
+   //Assert that the list isn't empty 
     System.assert(groupedResults.size()>0);
     //30 orders * 100 unitprice = 3000
     System.assertEquals(3000, groupedResults[0].get('sumOrders'));

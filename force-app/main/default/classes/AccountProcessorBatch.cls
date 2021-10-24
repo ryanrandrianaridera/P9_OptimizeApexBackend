@@ -6,7 +6,7 @@ global class AccountProcessorBatch implements Database.Batchable<sObject> {
             [  SELECT Id, Chiffre_d_affaire__c FROM Account WHERE Id IN (SELECT AccountId FROM Order WHERE Status = 'Ordered')]);
     }
 
-    // Process each batch of records
+    // Update the Chiffre_d_affaire field of all of these accounts
     global void execute(Database.BatchableContext bc, List<Account> scope) {
         Set<Id> sAccountToRecalculate = (new Map<Id, SObject>(scope)).keySet();       
         AccountManager.calculateAmount(sAccountToRecalculate);

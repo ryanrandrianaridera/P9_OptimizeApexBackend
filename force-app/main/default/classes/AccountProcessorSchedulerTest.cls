@@ -1,7 +1,7 @@
 @isTest
 public with sharing class AccountProcessorSchedulerTest {
     @isTest static void testAccountProcessorScheduler () {
-        // CRON expression: midnight on March 15. Because this is a test, 
+        // CRON expression: midnight on March 15 2022. Because this is a test, 
         // job is supposed to execute immediately after Test.stopTest()
         String cronExpr = '0 0 0 15 3 ? 2022';
         
